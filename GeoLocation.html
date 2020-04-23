@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geo Location</title>
+</head>
+<body>
+    <!-- clearWatch is used to clear watch or stop watchLocation function -->
+	<button onclick=" navigator.geolocation.clearWatch(watchId);">Stop</button>
+<script>
+	// geoloaction object is used to get positin
+	// navigator used for this purpose always
+	// getCurrentPosition gives current location only ones doesnt update
+
+	// through getCurrentPosition 
+
+	navigator.geolocation.getCurrentPosition(function(position){
+     console.log(position);
+     console.log(position.coords.longitude,position.coords.latitude); // gives an object coords(contains logitude,latitude,speed etc) in parameter function position 
+	},function(error){console.log(error);},{timeout:1000,enableHighAccuracy:true,maximunAge:100}); 
+	// if location is fetched in 1000 mili seconds then success runs else error is printed after 1000ms(if location is not get in 1000ms)
+    // enableHighAccuracy gives highly accurate location
+    // maximunAge gives location again after 100ms 
+    
+	// watchPosition() gives current position and keeps updating it when user moves like GPS
+	// through watchPosition
+
+ 
+    var watchId = navigator.geolocation.watchPosition(function(position){ // watch position gives us a id through which we can stop it
+    console.log(position);
+    console.log(position.coords.longitude,position.coords.latitude); 
+    },function(error){console.log(error);});
+
+
+   
+</script>
+</body>
+</html>
